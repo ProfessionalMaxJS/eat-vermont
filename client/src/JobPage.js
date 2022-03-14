@@ -6,19 +6,21 @@ function JobPage(){
     const id = useParams().id
 
     const [job, setJob] = useState({})
+    const [business, setBusiness] = useState({})
 
     useEffect(()=>{
         fetch(`/backend/jobs/${id}`)
         .then(r=>r.json())
         .then(d=>{//console.log(d)
                 setJob(d)
+                setBusiness(d.business)
         })
-    },[])
+    },[id])
 
     return(
         <>
         <h1>{job.position}</h1>
-        <h2>{job.business.business_name}, {job.business.town}</h2>
+        <h2>{business.business_name}, {business.town}</h2>
         <h3>{job.hours}/week; ${job.rate}/hr </h3>
         <p>Contact {job.phone} or {job.email} for more info</p>
         <br />
