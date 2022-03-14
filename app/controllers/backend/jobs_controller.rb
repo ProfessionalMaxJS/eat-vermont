@@ -1,4 +1,4 @@
-class JobsController < ApplicationController
+class Backend::JobsController < ApplicationController
   before_action :set_job, only: [:show, :update, :destroy]
 
   # GET /jobs
@@ -46,6 +46,6 @@ class JobsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def job_params
-      params.require(:job).permit(:position, :hours, :pay, :email, :phone, :point_person, :business_id)
+      params.require(:job).permit(:position, :hours, :rate, :phone, :email, :business_id)
     end
 end

@@ -3,11 +3,10 @@ class CreateTakenDownJobs < ActiveRecord::Migration[6.1]
     create_table :taken_down_jobs do |t|
       t.string :position
       t.string :hours
-      t.float :pay
+      t.float :rate
+      t.string :phone
       t.string :email
-      t.integer :phone
-      t.string :point_person
-      t.boolean :position_filled, default: false
+      t.boolean :job_filled_here
       t.belongs_to :business, null: false, foreign_key: true
 
       t.timestamps

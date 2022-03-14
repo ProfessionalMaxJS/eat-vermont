@@ -1,3 +1,3 @@
 class BusinessSerializer < ActiveModel::Serializer
-  attributes :id, :business_name, :address, :phone, :website, :business_type, :user_name, :email_address
+  attributes :id, :business_name, :town, :link, :username, :password_digest
 end

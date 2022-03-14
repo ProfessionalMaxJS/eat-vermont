@@ -1,4 +1,4 @@
-class TakenDownJobsController < ApplicationController
+class Admin::TakenDownJobsController < ApplicationController
   before_action :set_taken_down_job, only: [:show, :update, :destroy]
 
   # GET /taken_down_jobs
@@ -46,6 +46,6 @@ class TakenDownJobsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def taken_down_job_params
-      params.require(:taken_down_job).permit(:position, :hours, :pay, :email, :phone, :point_person, :position_filled, :business_id)
+      params.require(:taken_down_job).permit(:position, :hours, :rate, :phone, :email, :job_filled_here, :business_id)
     end
 end
