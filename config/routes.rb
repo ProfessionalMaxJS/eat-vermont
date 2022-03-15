@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :backend do
     resources :jobs
     resources :businesses
+    # get '/businesses/:id/posted_jobs', to: "jobs#posted_jobs" ##thought about 'fetching' from this route before I decided to instead add 'has_many :jobs' to /models/business.rb, and ':jobs' to /serializers/business_serializer.rb
   end
   
   namespace :admin do

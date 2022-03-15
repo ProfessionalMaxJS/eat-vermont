@@ -6,8 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-biz_types = { 1 => "farm", 2 => "restaurant"}
-
 5.times{
     Business.create!(
         business_name: Faker::Quotes::Shakespeare.king_richard_iii_quote,

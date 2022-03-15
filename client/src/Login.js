@@ -16,7 +16,7 @@ function Login(){
                 <button onClick={handleLogin} >Login</button>
             </form>
             <br />
-            <Link to="/Register">or, Sign Up?</Link>
+            <Link to="/Signup">or, Sign Up?</Link>
         </>
     )
 }

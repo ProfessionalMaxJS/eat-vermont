@@ -1,5 +1,5 @@
 class Backend::BusinessesController < ApplicationController
-  before_action :set_business, only: [:show, :update, :destroy]
+  before_action :set_business, only: [:show, :update, :destroy] #:posted_jobs,
 
   # GET /businesses
   def index
@@ -12,6 +12,12 @@ class Backend::BusinessesController < ApplicationController
   def show
     render json: @business
   end
+
+  # #GET /businesses/1/jobs
+  # def posted_jobs
+  #   render json: @business.jobs.all
+  # end
+  ##thought about 'fetching' with this method before I decided to instead add 'has_many :jobs' to /models/business.rb, and ':jobs' to /serializers/business_serializer.rb
 
   # POST /businesses
   def create

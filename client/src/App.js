@@ -11,10 +11,11 @@ function App() {
   <>
     <Routes>
       <Route path="/" element={<JobCards />}/>
-      <Route path="/Login" element={<Login />} />
-      <Route path="/Signup" element={<Signup />}/>
       <Route path="/Job/:id" element={<JobPage />} />
       <Route path="/Business/:id" element={<BusinessPage />} />
+      <Route path="/Login" element={<Login />} />
+      <Route path="/Signup" element={<Signup />}/>
+      <Route path="/Account/:id" element={<Signup />} />
     </Routes>
   </>
   );
