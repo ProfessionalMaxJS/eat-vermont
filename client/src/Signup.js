@@ -1,44 +1,47 @@
-import {Link, useParams} from 'react-router-dom';
+import {Link, useParams, useNavigate} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 
 function Register(){
 
-const [account, setAccount] = useState({business_name:"", town:"", link:"", username:"", password:"", password_confirmation:""})
+const [business, setBusiness] = useState({business_name:"", town:"", link:"", username:"", password:"", password_confirmation:""})
 const id = useParams().id
 useEffect(()=>{
     if(id){
         fetch(`/backend/businesses/${id}`)
         .then(r=>r.json())
         .then(d=>{//console.log(d)
-                setAccount(d)
+                setBusiness(d)
         })
     }
     }, [id])
 
 const handleChange = (e) =>{
-    setAccount({...account, [e.target.name]:e.target.value})
+    setBusiness({...business, [e.target.name]:e.target.value})
+    // console.log(business)
 }
 
 const handleEdit = (e) =>{
     e.preventDefault()
-    //console.log(account)
+    //console.log(business)
     
 }
 
+const toBizPage = useNavigate();
 const handleSignUp = (e) =>{
     e.preventDefault();
-    // console.log(account)
+    // console.log(business)
     fetch("/backend/businesses", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({account}),
+        body: JSON.stringify({business}),
       })
         .then(r => r.json())
-        .catch(err=>alert(err))
-        .then(d=>{console.log(d)
-                // setAccount({business_name:"", town:"", link:"", username:"", password:"", password_confirmation:""})
+        // .catch(err=>alert(err))
+        .then(d=>{//console.log(d)
+                setBusiness({business_name:"", town:"", link:"", username:"", password:"", password_confirmation:""})
+                toBizPage(`/Business/${d.id}`)
         })
 }
 
@@ -46,12 +49,12 @@ return(
     <>
 
     <form style={{display:"flex", flexDirection:'column', width:"35vw"}} > 
-        <input onChange={handleChange} name="username" value={account.username} placeholder='email address' ></input>
-        <input onChange={handleChange} name="password" value={account.password} type="password" placeholder="password"></input>
-        <input onChange={handleChange} name="password_confirmation" value={account.password_confirmation} type="password" placeholder="password confirmation"></input>
-        <input onChange={handleChange} name="business_name" value={account.business_name} placeholder="business name" ></input>
-        <input onChange={handleChange} name="town" value={account.town} placeholder="town"></input>
-        <input onChange={handleChange} name="link" value={account.link} placeholder="website" ></input>
+        <input onChange={handleChange} name="username" value={business.username} placeholder='email address' ></input>
+        <input onChange={handleChange} name="password" value={business.password} type="password" placeholder="password"></input>
+        <input onChange={handleChange} name="password_confirmation" value={business.password_confirmation} type="password" placeholder="password confirmation"></input>
+        <input onChange={handleChange} name="business_name" value={business.business_name} placeholder="business name" ></input>
+        <input onChange={handleChange} name="town" value={business.town} placeholder="town"></input>
+        <input onChange={handleChange} name="link" value={business.link} placeholder="website" ></input>
         <button onClick={id ? handleEdit : handleSignUp}>{id ? "Edit!" : "Sign Up!"}</button>
     </form>
     <br />

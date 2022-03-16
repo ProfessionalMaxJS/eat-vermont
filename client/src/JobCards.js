@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import JobCard from './JobCard';
 
-function JobCards(){
+function JobCards({loggedIn}){
     
     const [jobs, setJobs] = useState([])
 
@@ -20,7 +20,7 @@ function JobCards(){
             <Link to="/Login">Login</Link>
 
             {jobs.map(job=>{
-            return <JobCard key={job.id} job={job} />
+            return <JobCard loggedIn={loggedIn} key={job.id} job={job} />
             })}
         </>
     )

@@ -24,7 +24,7 @@ class Backend::BusinessesController < ApplicationController
     @business = Business.new(business_params)
 
     if @business.save
-      render json: @business, status: :created, location: @business
+      render json: @business, status: :created #, location: @business
     else
       render json: @business.errors, status: :unprocessable_entity
     end
@@ -52,6 +52,6 @@ class Backend::BusinessesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def business_params
-      params.require(:business).permit(:business_name, :town, :link, :username, :password_digest)
+      params.require(:business).permit(:business_name, :town, :link, :username, :password, :password_confirmation)
     end
 end
