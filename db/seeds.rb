@@ -12,6 +12,8 @@
         town: Faker::Address.city,
         link:"www.#{Faker::Music.chord}.com",
         username: Faker::Creature::Cat.name,
+        password: "a",
+        password_confirmation: "a"
         )
     }
     
@@ -22,7 +24,7 @@
             rate: rand(25.00),
             phone: 2129891540,
             email: "#{Faker::Creature::Cat.name}@#{Faker::Music.chord}.com",
-            business_id: rand(1..5),
+            business_id: rand(23..27),
     )
 }
 

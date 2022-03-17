@@ -13,17 +13,12 @@ class Backend::BusinessesController < ApplicationController
     render json: @business
   end
 
-  # #GET /businesses/1/jobs
-  # def posted_jobs
-  #   render json: @business.jobs.all
-  # end
-  ##thought about 'fetching' with this method before I decided to instead add 'has_many :jobs' to /models/business.rb, and ':jobs' to /serializers/business_serializer.rb
-
   # POST /businesses
   def create
     @business = Business.new(business_params)
 
     if @business.save
+      session[:user_id] = @business.id
       render json: @business, status: :created #, location: @business
     else
       render json: @business.errors, status: :unprocessable_entity

@@ -1,7 +1,7 @@
 import {Link, useNavigate} from 'react-router-dom';
 import {useState} from 'react';
 
-function Login(){
+function Login({loggedIn, setLoggedIn}){
 
     const [account, setAccount] = useState({username:"", password:""})
 
@@ -23,8 +23,9 @@ function Login(){
             body: JSON.stringify(account),
           })
             .then(r => r.json())
-            // .catch(err=>alert(err))
+            .catch(err=>alert(err))
             .then(d=>{//console.log(d)
+                    setLoggedIn(d.id)
                     setAccount({username:"", password:""})
                     toBizPage(`/Business/${d.id}`)
             })

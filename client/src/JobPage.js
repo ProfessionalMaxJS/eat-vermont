@@ -26,6 +26,7 @@ function JobPage(){
         <p>Contact {job.phone} or {job.email} for more info</p>
         <br />
         <Link to="/">All Jobs</Link>
+        <br />
         </>
     )
 }

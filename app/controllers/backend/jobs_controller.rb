@@ -1,5 +1,5 @@
 class Backend::JobsController < ApplicationController
-  before_action :set_job, only: [:show, :update, :destroy]
+  before_action :set_job, only: [:show, :destroy]
 
   # GET /jobs
   def index
@@ -15,19 +15,17 @@ class Backend::JobsController < ApplicationController
 
   # POST /jobs
   def create
-    @job = Job.new(job_params)
+    # byebug
+    user = Business.find(session[:user_id])
+    if user &.authenticate(params[:password])
+      create_job_params = job_params.except(:password).merge(:business_id => session[:user_id])
+      @job = Job.new(create_job_params)
+    # else
+    #   render json: {"I'm sorry, but that seems to be the wrong password"}
+    end
 
     if @job.save
-      render json: @job, status: :created, location: @job
-    else
-      render json: @job.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /jobs/1
-  def update
-    if @job.update(job_params)
-      render json: @job
+      render json: @job, status: :created
     else
       render json: @job.errors, status: :unprocessable_entity
     end
@@ -46,6 +44,6 @@ class Backend::JobsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def job_params
-      params.require(:job).permit(:position, :hours, :rate, :phone, :email, :business_id)
+      params.permit(:position, :hours, :rate, :phone, :email, :password)
     end
 end
