@@ -28,19 +28,18 @@ const handleAccountPATCH = (e) =>{
     e.preventDefault()
     //console.log(business)
     fetch(`/backend/businesses/${loggedIn}`, {
-        method: "put",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({business}),
+        body: JSON.stringify(business),
       })
         .then(r => r.json())
         .catch(err=>alert(err))
-        .then(d=>{console.log(d)
-                // setLoggedIn(d.id)
-                // setBusiness({business_name:"", town:"", link:"", username:"", password:"", password_confirmation:""})
-                // toBizPage(`/Business/${d.id}`)
-        })
+        .then(d=>{//console.log(d)
+                alert(`${d.business_name} has been updated`)
+                setBusiness({...business, password:""})
+              })
 }
 
 const toBizPage = useNavigate();
@@ -52,7 +51,7 @@ const handleSignUp = (e) =>{
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({business}),
+        body: JSON.stringify(business),
       })
         .then(r => r.json())
         .catch(err=>alert(err))

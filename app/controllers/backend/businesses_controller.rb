@@ -27,11 +27,15 @@ class Backend::BusinessesController < ApplicationController
 
   # PATCH/PUT /businesses/1
   def update
-    if @business.update(business_params)
-      render json: @business
+    # byebug
+    user = Business.find(session[:user_id])
+    if user &.authenticate(params[:password])
+      user.update(business_params)
+      render json: user, status: :ok
     else
-      render json: @business.errors, status: :unprocessable_entity
+      render json: user.errors, status: :unprocessable_entity
     end
+
   end
 
   # DELETE /businesses/1
@@ -47,6 +51,6 @@ class Backend::BusinessesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def business_params
-      params.require(:business).permit(:business_name, :town, :link, :username, :password, :password_confirmation)
+      params.except(:jobs, :business).permit(:business_name, :town, :link, :username, :password, :password_confirmation, :id)
     end
 end
