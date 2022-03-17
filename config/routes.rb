@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     get '/all_signups', to: "businesses#index"
-    resources :taken_down_jobs, only: [:index]
+    resources :taken_down_jobs, only: [:index, :create]
   end
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

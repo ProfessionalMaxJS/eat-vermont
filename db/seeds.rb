@@ -24,7 +24,7 @@
             rate: rand(25.00),
             phone: 2129891540,
             email: "#{Faker::Creature::Cat.name}@#{Faker::Music.chord}.com",
-            business_id: rand(23..27),
+            business_id: rand(40..44),
     )
 }
 

@@ -20,7 +20,7 @@ function JobCards({loggedIn, setLoggedIn}){
                 setLoggedIn(d.user_id)
             })
 
-    }, [])
+    }, [setLoggedIn])
 
     const toMyAccount = useNavigate(``)
 

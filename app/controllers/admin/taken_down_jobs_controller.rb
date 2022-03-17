@@ -8,34 +8,24 @@ class Admin::TakenDownJobsController < ApplicationController
     render json: @taken_down_jobs
   end
 
-  # GET /taken_down_jobs/1
-  def show
-    render json: @taken_down_job
-  end
-
   # POST /taken_down_jobs
   def create
-    @taken_down_job = TakenDownJob.new(taken_down_job_params)
+    old_job = Job.find(params[:job_id])
 
-    if @taken_down_job.save
-      render json: @taken_down_job, status: :created, location: @taken_down_job
-    else
-      render json: @taken_down_job.errors, status: :unprocessable_entity
-    end
-  end
+    new_params = taken_down_job_params.except(:job_id).merge(position: old_job[:position], hours: old_job[:hours], rate: old_job[:rate], phone: old_job[:phone], email: old_job[:email], business_id: old_job[:business_id])
+    @taken_down_job = TakenDownJob.new(new_params)
+    
+    Job.destroy(old_job.id)
+    
+    user = Business.find(session[:user_id])
+    # byebug
+    render json: user.jobs, status: :ok 
 
-  # PATCH/PUT /taken_down_jobs/1
-  def update
-    if @taken_down_job.update(taken_down_job_params)
-      render json: @taken_down_job
-    else
-      render json: @taken_down_job.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /taken_down_jobs/1
-  def destroy
-    @taken_down_job.destroy
+    # if @taken_down_job.save
+    #   render json: @taken_down_job, status: :created
+    # else
+    #   render json: @taken_down_job.errors, status: :unprocessable_entity
+    # end
   end
 
   private
@@ -46,6 +36,7 @@ class Admin::TakenDownJobsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def taken_down_job_params
-      params.require(:taken_down_job).permit(:position, :hours, :rate, :phone, :email, :job_filled_here, :business_id)
+      params.require(:taken_down_job).permit(:job_id, :job_filled_here)
+      # params.permit(:job_id, :position, :hours, :rate, :phone, :email, :job_filled_here, :business_id)
     end
 end
