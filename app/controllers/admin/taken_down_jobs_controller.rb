@@ -1,5 +1,5 @@
 class Admin::TakenDownJobsController < ApplicationController
-  before_action :set_taken_down_job, only: [:show, :update, :destroy]
+  # before_action :set_taken_down_job, only: [:show, :update, :destroy]
 
   # GET /taken_down_jobs
   def index
@@ -30,9 +30,9 @@ class Admin::TakenDownJobsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_taken_down_job
-      @taken_down_job = TakenDownJob.find(params[:id])
-    end
+    # def set_taken_down_job
+    #   @taken_down_job = TakenDownJob.find(params[:id])
+    # end
 
     # Only allow a list of trusted parameters through.
     def taken_down_job_params

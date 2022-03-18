@@ -59,28 +59,17 @@ const handleLogout = () =>{
                 setPostedJobs(d)
             })
         }
-
-                //     fetch("/backend/jobs", {
-                //         method: "POST",
-                //         headers: {
-                //           "Content-Type": "application/json",
-                //         },
-                //         body: JSON.stringify(job),
-                //       })
-                //         .then(r => r.json())
-                //         .catch(err=>alert(err))
-                //         .then(d=>{alert(`${d.position} has been added to the board`)
-                //                 setJob({position:"", hours:"",rate:"",phone:"",email:"",password:""})
-                //         })
-                // }
       }
 
     return(
         <>
-        <h1>{business.business_name}</h1>
+        <div id="business-head">
+        <h1 >{business.business_name}</h1>
+        <h2>{business.town}</h2>
         <a href={`http://${business.link}`}>{business.link}</a>
         <br /><br />
         <p style={{textDecoration:'underline'}}>Posted Job Openings</p>
+        </div>
         {postedJobs.length ? postedJobs.map(pJ=>{
             return <div key={pJ.id}><JobCard job={pJ} /> {id==loggedIn && 
             <form >

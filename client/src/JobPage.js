@@ -22,7 +22,7 @@ function JobPage(){
         <>
         <h1>{job.position}</h1>
         <h2 style={{cursor:"pointer"}}  onClick={()=>toBizPage(`/Business/${business.id}`)}  >{business.business_name}, {business.town}</h2>
-        <h3>{job.hours}/week; ${job.rate}/hr </h3>
+        <h3>{job.hours}hours/week; ${job.rate}/hr </h3>
         <p>Contact {job.phone} or {job.email} for more info</p>
         <br />
         <Link to="/">All Jobs</Link>

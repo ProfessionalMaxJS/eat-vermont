@@ -29,8 +29,9 @@ class Backend::BusinessesController < ApplicationController
   def update
     # byebug
     user = Business.find(session[:user_id])
-    if user &.authenticate(params[:password])
-      user.update(business_params)
+    # if user &.authenticate(params[:password]) ## can be added back in for additional auth, if desired
+    user.update(business_params)
+    if user.update
       render json: user, status: :ok
     else
       render json: user.errors, status: :unprocessable_entity

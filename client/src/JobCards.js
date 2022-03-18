@@ -1,4 +1,4 @@
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import JobCard from './JobCard';
 
@@ -22,17 +22,21 @@ function JobCards({loggedIn, setLoggedIn}){
 
     }, [setLoggedIn])
 
-    const toMyAccount = useNavigate(``)
+    // const toMyAccount = useNavigate(``)
+    // onClick={()=>toMyAccount(`/Business/${loggedIn}`)}
 
-    return(
+
+return(
         <>
-
+        <h1>Welcome to the Eat Vermont Jobs Board!</h1>
             {!loggedIn && <Link to="/Login">Login</Link>}&nbsp;&nbsp;&nbsp; 
             {!loggedIn && <Link to ="/Signup">Sign Up</Link>}
-            {loggedIn && <p id="stubborn-link" onClick={()=>toMyAccount(`/Business/${loggedIn}`)}  >My Account</p>}
+            {loggedIn && <Link to={`/Business/${loggedIn}`}>My Account</Link>}
+        <div id="jobs-board" >
            {jobs.length ? jobs.map(job=>{
-            return <JobCard key={job.id} job={job} />
+               return <JobCard key={job.id} job={job} />
             }) : <p>There are no posted, available jobs right now. Check back soon!</p>}
+            </div>
         </>
     )
 }

@@ -17,12 +17,14 @@ class Backend::JobsController < ApplicationController
   def create
     # byebug
     user = Business.find(session[:user_id])
-    if user &.authenticate(params[:password])
-      create_job_params = job_params.except(:password).merge(:business_id => session[:user_id])
+    # if user &.authenticate(params[:password]) ##can be added back in later for additional auth, if desired
+    create_job_params = job_params.except(:password).merge(:business_id => session[:user_id])
       @job = Job.new(create_job_params)
+    # if @job.save
+    #   render json: @job, status: :create
     # else
-    #   render json: {"I'm sorry, but that seems to be the wrong password"}
-    end
+    #   render json: @business.errors, status: :unprocessable_entity
+    # end
 
     if @job.save
       render json: @job, status: :created
