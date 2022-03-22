@@ -17,7 +17,7 @@ class Admin::TakenDownJobsController < ApplicationController
     
     
     if @taken_down_job.save
-      byebug
+      # byebug
       Job.destroy(old_job.id)    
       user = Business.find(session[:user_id])
       render json: user.jobs, status: :ok 

@@ -43,22 +43,22 @@ const handleLogout = () =>{
 
         // console.log(takenDownJob)
         if(!takenDownJob.job_id){
-            alert("Sorry, please answer our survey first")
+        return alert("Sorry, please answer our survey first")
         }
-        else{
-            fetch(`/admin/taken_down_jobs`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
+ 
+        fetch(`/admin/taken_down_jobs`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
                 },
-                body: JSON.stringify(takenDownJob),
+            body: JSON.stringify(takenDownJob),
             })
             .then(r=>r.json())
             .catch(err=>alert(err))
             .then(d=>{//console.log(d)
                 setPostedJobs(d)
             })
-        }
+        
       }
 
     return(
