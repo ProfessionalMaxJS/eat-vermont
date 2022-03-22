@@ -24,10 +24,14 @@ function Login({loggedIn, setLoggedIn}){
           })
             .then(r => r.json())
             .catch(err=>alert(err))
-            .then(d=>{//console.log(d)
-                    setLoggedIn(d.id)
+            .then(d=>{console.log(d)
+                    if(d.error){
+                        alert(d.error)
+                    }
+                    else
+                    {setLoggedIn(d.id)
                     setAccount({username:"", password:""})
-                    toBizPage(`/Business/${d.id}`)
+                    toBizPage(`/Business/${d.id}`)}
             })
     }
 

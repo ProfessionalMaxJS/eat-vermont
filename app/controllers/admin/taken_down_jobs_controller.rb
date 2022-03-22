@@ -15,7 +15,6 @@ class Admin::TakenDownJobsController < ApplicationController
     new_params = taken_down_job_params.except(:job_id).merge(position: old_job[:position], hours: old_job[:hours], rate: old_job[:rate], phone: old_job[:phone], email: old_job[:email], business_id: old_job[:business_id])
     @taken_down_job = TakenDownJob.new(new_params)
     
-    
     if @taken_down_job.save
       # byebug
       Job.destroy(old_job.id)    

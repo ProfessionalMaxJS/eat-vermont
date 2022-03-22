@@ -27,3 +27,14 @@ def destroy
 end
 
 end
+
+  # POST /trackers
+  # def create
+  #   @tracker = Tracker.new(tracker_params)
+
+  #   if @tracker.save
+  #     render json: @tracker, status: :created, location: @tracker
+  #   else
+  #     render json: @tracker.errors, status: :unprocessable_entity
+  #   end
+  # end
