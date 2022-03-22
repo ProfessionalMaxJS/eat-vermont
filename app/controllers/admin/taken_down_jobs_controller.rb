@@ -3,29 +3,28 @@ class Admin::TakenDownJobsController < ApplicationController
 
   # GET /taken_down_jobs
   def index
-    @taken_down_jobs = TakenDownJob.all
+    render json: TakenDownJob.all
 
-    render json: @taken_down_jobs
+    # render json: @taken_down_jobs
   end
 
   # POST /taken_down_jobs
   def create
     old_job = Job.find(params[:job_id])
-
+    
     new_params = taken_down_job_params.except(:job_id).merge(position: old_job[:position], hours: old_job[:hours], rate: old_job[:rate], phone: old_job[:phone], email: old_job[:email], business_id: old_job[:business_id])
     @taken_down_job = TakenDownJob.new(new_params)
     
-    Job.destroy(old_job.id)
     
-    user = Business.find(session[:user_id])
-    # byebug
-    render json: user.jobs, status: :ok 
-
-    # if @taken_down_job.save
+    if @taken_down_job.save
+      byebug
+      Job.destroy(old_job.id)    
+      user = Business.find(session[:user_id])
+      render json: user.jobs, status: :ok 
     #   render json: @taken_down_job, status: :created
-    # else
-    #   render json: @taken_down_job.errors, status: :unprocessable_entity
-    # end
+    else
+      render json: @taken_down_job.errors, status: :unprocessable_entity
+    end
   end
 
   private

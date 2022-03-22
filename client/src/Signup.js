@@ -106,7 +106,7 @@ return(
     {id && loggedIn && id==loggedIn && <p>"Post a Job"</p>}
     {id && loggedIn && id==loggedIn && <form style={{display:"flex", flexDirection:'column', width:"35vw"}} >
     <input onChange={handleJobChange} name="position" value={job.position} placeholder="position" />
-    <input onChange={handleJobChange} name="hours" value={job.hours} placeholder="hours" />
+    <input onChange={handleJobChange} name="hours" value={job.hours} placeholder="hours per week" />
     <input onChange={handleJobChange} name="rate" value={job.rate} placeholder="pay rate (up to two decimals)" type="number" step=".01" />
     <input onChange={handleJobChange} name="phone" value={job.phone} placeholder="contact phone" />
     <input onChange={handleJobChange} name="email" value={job.email} placeholder="contact email" />
