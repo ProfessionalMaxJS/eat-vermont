@@ -9,14 +9,14 @@ function JobCards({loggedIn, setLoggedIn}){
     useEffect(()=>{
         fetch('/backend/jobs')
         .then(r=>r.json())
-        .then(d=>{console.log(d)
+        .then(d=>{//console.log(d)
                     setJobs(d)
                 })
 
         fetch('/backend/user_id')
         .then(r=>r.json())
         .catch(err=>alert(err))
-        .then(d=>{console.log(d)
+        .then(d=>{//console.log(d)
                 setLoggedIn(d.user_id)
             })
 
