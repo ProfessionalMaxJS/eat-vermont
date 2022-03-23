@@ -9,9 +9,9 @@ function JobCards({loggedIn, setLoggedIn}){
     useEffect(()=>{
         fetch('/backend/jobs')
         .then(r=>r.json())
-        .then(d=>{//console.log(d)
-            setJobs(d)
-        })
+        .then(d=>{console.log(d)
+                    setJobs(d)
+                })
 
         fetch('/backend/user_id')
         .then(r=>r.json())
@@ -34,7 +34,7 @@ return(
             {loggedIn && <Link to={`/Business/${loggedIn}`}>My Account</Link>}
         <div id="jobs-board" >
            {jobs.length ? jobs.map(job=>{
-               return <JobCard key={job.id} job={job} />
+               return <JobCard key={job.id} job={job} business={job.business} />
             }) : <p>There are no posted, available jobs right now. Check back soon!</p>}
             </div>
         </>

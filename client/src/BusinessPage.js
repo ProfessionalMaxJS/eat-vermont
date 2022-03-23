@@ -71,7 +71,7 @@ const handleLogout = () =>{
         <p style={{textDecoration:'underline'}}>Posted Job Openings</p>
         </div>
         {postedJobs.length ? postedJobs.map(pJ=>{
-            return <div key={pJ.id}><JobCard job={pJ} /> {id==loggedIn && 
+            return <div key={pJ.id}><JobCard job={pJ} business={business} /> {id==loggedIn && 
             <form >
             <p>To take down <span style={{fontWeight:800}}>{pJ.position}</span>: was the position filled with a candidate from Eat Vermont?</p>
             <input type="radio" name="deleteable" id="false" value={false} onChange={(e)=>{setTakenDownJob({...takenDownJob, job_filled_here: e.target.value, job_id: pJ.id})}} />
