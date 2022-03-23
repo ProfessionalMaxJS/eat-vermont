@@ -33,42 +33,40 @@ const handleAccountChange = (e) =>{
 
 const handleAccountPATCH = (e) =>{
     e.preventDefault()
-    console.log("YO!")
     //console.log(business)
-    // fetch(`/backend/businesses/${loggedIn}`, {
-    //     method: "PATCH",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(business),
-    //   })
-    //     .then(r => r.json())
-    //     .catch(err=>alert(err))
-    //     .then(d=>{//console.log(d)
-    //             alert(`${d.business_name} has been updated`)
-    //             setBusiness({...business, password:""})
-    //           })
+    fetch(`/backend/businesses/${loggedIn}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(business),
+      })
+        .then(r => r.json())
+        .catch(err=>alert(err))
+        .then(d=>{//console.log(d)
+                alert(`${d.business_name} has been updated`)
+                setBusiness({...business, password:""})
+              })
 }
 
 const toBizPage = useNavigate();
 const handleSignUp = (e) =>{
     e.preventDefault();
-    console.log("OY!")
     // // console.log(business)
-    // fetch("/backend/businesses", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(business),
-    //   })
-    //     .then(r => r.json())
-    //     .catch(err=>alert(err))
-    //     .then(d=>{//console.log(d)
-    //             setLoggedIn(d.id)
-    //             setBusiness({business_name:"", town:"", link:"", username:"", password:"", password_confirmation:""})
-    //             toBizPage(`/Business/${d.id}`)
-        // })
+    fetch("/backend/businesses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(business),
+      })
+        .then(r => r.json())
+        .catch(err=>alert(err))
+        .then(d=>{//console.log(d)
+                setLoggedIn(d.id)
+                setBusiness({business_name:"", town:"", link:"", username:"", password:"", password_confirmation:""})
+                toBizPage(`/Business/${d.id}`)
+        })
 }
 
 const handleJobChange = (e) =>{
