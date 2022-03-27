@@ -29,7 +29,7 @@ class Backend::JobsController < ApplicationController
     if @job.save
       render json: @job, status: :created
     else
-      render json: @job.errors, status: :unprocessable_entity
+      render json: {errors: @job.errors.full_messages}, status: :unprocessable_entity
     end
   end
 

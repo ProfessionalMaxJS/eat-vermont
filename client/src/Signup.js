@@ -99,8 +99,16 @@ const handleJobPost = (e) =>{
       })
         .then(r => r.json())
         .catch(err=>alert(err))
-        .then(d=>{alert(`${d.position} has been added to the board`)
+        .then(d=>{//console.log(d)
+          if(d.errors){
+            d.errors.map(dE=>{
+              return alert(`Sorry, ${dE}`)
+            })
+          }
+        else{
+                alert(`${d.position} has been added to the board`)
                 setJob({position:"", hours:"",rate:"",phone:"",email:"",password:""})
+        }
         })
 }
 

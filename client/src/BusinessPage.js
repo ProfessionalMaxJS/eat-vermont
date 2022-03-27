@@ -70,7 +70,10 @@ const handleLogout = () =>{
         <br /><br />
         <p style={{textDecoration:'underline'}}>Posted Job Openings</p>
         </div>
-        {postedJobs.length ? postedJobs.map(pJ=>{
+        {postedJobs.length ?
+                       
+        postedJobs.map(pJ=>{
+            
             return <div key={pJ.id}><JobCard job={pJ} business={business} /> {id==loggedIn && 
             <form >
             <p>To take down <span style={{fontWeight:800}}>{pJ.position}</span>: was the position filled with a candidate from Eat Vermont?</p>
@@ -82,9 +85,11 @@ const handleLogout = () =>{
             <input type="button" value="Delete" onClick={()=>deleteMe(pJ.id)} />
             </form>}
             </div>
-            })
+        }) 
             
-            : <p>This Business doesn't have any available jobs right now.</p>}
+            : <p>This Business doesn't have any available jobs right now.</p>} {/*Ternary Statement to prevent the page from freezing if(!jobs.length)*/}
+         
+
          <br />
         <Link to="/">All Jobs</Link><br />
         <Link to={loggedIn==id && `/Account/${id}`} >{loggedIn==id && "Post Jobs and Edit Account Details"}</Link>

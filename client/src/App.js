@@ -28,3 +28,7 @@ function App() {
 }
 
 export default App;
+
+//Comments:
+//
+// This page only serves as a hub for the routes. There is a fair amount of "dynamic routing" in this application, including the Job, Business and Account pages (which fetch and load depending on the id) as well as using the same component (Signup, Business Page) for different purposes, whether the user is logged in as THAT account (as determined by two State variables, id and loggedIn).
