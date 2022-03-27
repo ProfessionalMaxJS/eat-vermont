@@ -44,8 +44,15 @@ const handleAccountPATCH = (e) =>{
         .then(r => r.json())
         .catch(err=>alert(err))
         .then(d=>{//console.log(d)
+          if(d.errors){
+            d.errors.map(dE=>{
+              return alert(`Sorry, ${dE}`)
+            })
+          }
+        else{
                 alert(`${d.business_name} has been updated`)
                 setBusiness({...business, password:""})
+        }
               })
 }
 
@@ -62,7 +69,7 @@ const handleSignUp = (e) =>{
       })
         .then(r => r.json())
         .catch(err=>alert(err))
-        .then(d=>{console.log(d)
+        .then(d=>{//console.log(d)
                   if(d.errors){
                     d.errors.map(dE=>{
                       return alert(`Sorry, ${dE}`)

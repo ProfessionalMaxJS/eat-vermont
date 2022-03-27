@@ -6,6 +6,7 @@ import Signup from './Signup';
 import JobCards from './JobCards';
 import JobPage from './JobPage';
 import BusinessPage from './BusinessPage';
+import Redirect from './Redirect';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
       <Route path="/Login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
       <Route path="/Signup" element={<Signup loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}/>
       <Route path="/Account/:id" element={<Signup loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
+      <Route path='*' element={<Redirect />}/>
     </Routes>
   </>
   );
