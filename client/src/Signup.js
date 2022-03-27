@@ -62,11 +62,18 @@ const handleSignUp = (e) =>{
       })
         .then(r => r.json())
         .catch(err=>alert(err))
-        .then(d=>{//console.log(d)
+        .then(d=>{console.log(d)
+                  if(d.errors){
+                    d.errors.map(dE=>{
+                      return alert(`Sorry, ${dE}`)
+                    })
+                  }
+                else{
                 setLoggedIn(d.id)
                 setBusiness({business_name:"", town:"", link:"", username:"", password:"", password_confirmation:""})
                 toBizPage(`/Business/${d.id}`)
-        })
+                }
+              })
 }
 
 const handleJobChange = (e) =>{

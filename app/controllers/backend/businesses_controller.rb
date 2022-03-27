@@ -21,7 +21,7 @@ class Backend::BusinessesController < ApplicationController
       session[:user_id] = @business.id
       render json: @business, status: :created #, location: @business
     else
-      render json: @business.errors, status: :unprocessable_entity
+      render json: {errors: @business.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
